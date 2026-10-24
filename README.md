@@ -98,6 +98,8 @@ The claims that matter, measured against the live API and by capturing OpenCode'
 | GLM-5.3 with `none` | HTTP 400 `unsupported_reasoning_effort`; use `low` |
 | `flex` on Chat Completions | HTTP 400; use `asap` or `balanced` |
 | Key only in the shell | Invisible to the background service; `--standalone` only |
+| Key in `service.json` | Read by the service from the file, not inherited from the shell; `ps eww` on the service shows no `SAIL_API_KEY` |
+| Writing a key | Applies after `opencode service restart`; compare the service start time with the file's mtime |
 | Missing key | `Missing or invalid Authorization header` |
 
 Full measurements and per-model variants: [`reference/routing.md`](reference/routing.md).

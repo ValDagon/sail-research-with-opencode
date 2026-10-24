@@ -22,17 +22,29 @@ Reasoning effort is per model. Not every model accepts every level, and `none` i
 
 ### 1. Put the key in the service environment
 
-OpenCode's TUI and `run` talk to the background service. The service starts from its own environment, so a key exported in the current shell reaches only `--standalone` runs.
+The key belongs to the background service. It does not go into `opencode.json`, and exporting it in the terminal does not reach the service.
 
 ```sh
-opencode service set env SAIL_API_KEY '<key>'
+opencode service set env SAIL_API_KEY YOUR_SAIL_KEY
 opencode service restart
 opencode service get | jq '.env | keys'   # keys only; never print the value
 ```
 
-OpenCode stores it in `~/.config/opencode/service.json`; keep that file out of version control and out of the transcript.
+`service set` takes `<key> <value> [<env-value>]`: `env` selects the environment block, `SAIL_API_KEY` is the variable name, the third argument is the secret itself. Quote the key only if it contains `$`, `!`, `&`, `#`, or a space.
 
-Done when `service get` lists `SAIL_API_KEY`. If `service set` reports the command cancelled during a service restart, check `service get` before repeating the write.
+The value lands in `~/.config/opencode/service.json` under `.env.SAIL_API_KEY`. Keep that file out of version control and out of the transcript.
+
+**How the service gets the key.** OpenCode reads the `env` block of `service.json` itself; it does not inherit the variable from the shell that launched the session. Measured: `ps eww` on the running service shows no `SAIL_API_KEY` at all, yet Sail calls succeed. That is why `export SAIL_API_KEY=...` fails while `service set` works, and why `--standalone` runs, which do inherit the shell, are the one exception.
+
+**Restart after every write.** Treat the service environment as fixed at startup: a key written afterwards must not be assumed live until the service restarts. Hot-swapping without a restart is untested here, so do not rely on it. A service that started after the write already holds the new key, which is why the start time is worth checking before debugging anything else.
+
+```sh
+PID=$(lsof -ti tcp:$(opencode service status | head -1 | sed 's|.*:||'))
+ps -p "$PID" -o lstart=            # service start time
+stat -f '%Sm' ~/.config/opencode/service.json   # write time (Linux: stat -c %y)
+```
+
+Done when `service get` lists `SAIL_API_KEY`, the service start time is later than the file's modification time, and a live Sail call answers. The full check, including a probe that bypasses OpenCode, is in [reference/troubleshooting.md](reference/troubleshooting.md#checking-the-key-itself).
 
 ### 2. Register the provider
 
