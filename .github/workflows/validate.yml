@@ -31,3 +31,13 @@ jobs:
           grep -q '^description: ' SKILL.md
           test -f reference/routing.md
           test -f reference/troubleshooting.md
+
+      - name: Check README localization
+        run: |
+          test -f README.md
+          test -f README.zh-CN.md
+          grep -q 'README.zh-CN.md' README.md
+          grep -q '](README.md)' README.zh-CN.md
+          # Same code blocks and headings count in both files
+          diff <(grep -c '^```' README.md) <(grep -c '^```' README.zh-CN.md)
+          diff <(grep -c '^## ' README.md) <(grep -c '^## ' README.zh-CN.md)

@@ -1,5 +1,7 @@
 # Sail Research with OpenCode
 
+**English** | [简体中文](README.zh-CN.md)
+
 An [OpenCode](https://opencode.ai) skill that configures [SailResearch](https://sailresearch.com) as a model provider end to end: provider registration, API key handling, pinned model IDs, reasoning-effort variants, completion windows, agent routing, and a wire-level debugging recipe.
 
 [![validate](https://github.com/ValDagon/sail-research-with-opencode/actions/workflows/validate.yml/badge.svg)](https://github.com/ValDagon/sail-research-with-opencode/actions/workflows/validate.yml)
@@ -128,8 +130,13 @@ The script redacts `authorization` and `x-api-key` before writing the log.
 ├── .github/workflows/validate.yml
 ├── CHANGELOG.md
 ├── LICENSE
-└── README.md
+├── README.md                 # English (canonical)
+└── README.zh-CN.md           # 简体中文
 ```
+
+## Localization
+
+English is the canonical README. [`README.zh-CN.md`](README.zh-CN.md) is a full translation kept in sync with it. When you change behavior, measurements, or commands in one, change both; if a translation lags, say so in the pull request rather than leaving a silent mismatch.
 
 ## Contributing
 

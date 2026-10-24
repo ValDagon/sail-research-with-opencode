@@ -2,6 +2,14 @@
 
 All notable changes to this project are documented in this file. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.2] - 2026-10-24
+
+### Added
+
+- Simplified Chinese translation of the README (`README.zh-CN.md`), with language links on both pages.
+- Localization section documenting that English is canonical and translations are kept in sync.
+- CI check that both READMEs exist, link to each other, and keep the same number of code fences and section headings.
+
 ## [0.1.1] - 2026-10-24
 
 ### Added
