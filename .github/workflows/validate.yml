@@ -1,0 +1,33 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Validate provider JSON
+        run: python -m json.tool reference/provider.json > /dev/null
+
+      - name: Compile capture script
+        run: python -m py_compile scripts/capture-request.py
+
+      - name: Check skill frontmatter
+        run: |
+          test "$(head -1 SKILL.md)" = "---"
+          grep -q '^name: sail-research-with-opencode$' SKILL.md
+          grep -q '^description: ' SKILL.md
+          test -f reference/routing.md
+          test -f reference/troubleshooting.md

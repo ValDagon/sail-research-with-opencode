@@ -1,0 +1,126 @@
+{
+  "providers": {
+    "sailresearch": {
+      "name": "SailResearch",
+      "env": ["SAIL_API_KEY"],
+      "package": "@opencode/ai/providers/openai-compatible",
+      "settings": {
+        "baseURL": "https://api.sailresearch.com/v1"
+      },
+      "body": {
+        "store": true
+      },
+      "models": {
+        "glm-5.3": {
+          "modelID": "zai-org/GLM-5.3",
+          "name": "GLM 5.3 (Sail)",
+          "capabilities": {
+            "tools": true,
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 200000,
+            "output": 128000
+          },
+          "headers": {
+            "X-Sail-Completion-Window": "balanced"
+          },
+          "cost": {
+            "input": 0.5,
+            "output": 2.5,
+            "cache": {
+              "read": 0.12,
+              "write": 0
+            }
+          }
+        },
+        "kimi-k2.6": {
+          "modelID": "moonshotai/Kimi-K2.6",
+          "name": "Kimi K2.6 (Sail, vision)",
+          "capabilities": {
+            "tools": true,
+            "input": ["text", "image"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 262144,
+            "output": 65536
+          },
+          "headers": {
+            "X-Sail-Completion-Window": "balanced"
+          },
+          "cost": {
+            "input": 0.45,
+            "output": 3.0,
+            "cache": {
+              "read": 0.2,
+              "write": 0
+            }
+          }
+        },
+        "deepseek-v4.1-flash-1017": {
+          "modelID": "deepseek-ai/DeepSeek-V4.1-Flash-1017",
+          "name": "DeepSeek V4.1 Flash 1017 (Sail)",
+          "settings": {
+            "reasoningEffort": "low"
+          },
+          "variants": [
+            { "id": "none", "settings": { "reasoningEffort": "none" } },
+            { "id": "minimal", "settings": { "reasoningEffort": "minimal" } },
+            { "id": "low", "settings": { "reasoningEffort": "low" } },
+            { "id": "medium", "settings": { "reasoningEffort": "medium" } },
+            { "id": "high", "settings": { "reasoningEffort": "high" } }
+          ],
+          "capabilities": {
+            "tools": true,
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 200000,
+            "output": 128000
+          },
+          "headers": {
+            "X-Sail-Completion-Window": "balanced"
+          },
+          "cost": {
+            "input": 0.07,
+            "output": 0.22,
+            "cache": {
+              "read": 0.005,
+              "write": 0
+            }
+          }
+        },
+        "deepseek-v4-pro-0813": {
+          "modelID": "deepseek-ai/DeepSeek-V4-Pro-0813",
+          "name": "DeepSeek V4 Pro 0813 (Sail)",
+          "settings": {
+            "reasoningEffort": "high"
+          },
+          "capabilities": {
+            "tools": true,
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 200000,
+            "output": 128000
+          },
+          "headers": {
+            "X-Sail-Completion-Window": "balanced"
+          },
+          "cost": {
+            "input": 0.74,
+            "output": 2.22,
+            "cache": {
+              "read": 0.03,
+              "write": 0
+            }
+          }
+        }
+      }
+    }
+  }
+}
