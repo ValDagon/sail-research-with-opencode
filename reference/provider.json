@@ -2,7 +2,9 @@
   "providers": {
     "sailresearch": {
       "name": "SailResearch",
-      "env": ["SAIL_API_KEY"],
+      "env": [
+        "SAIL_API_KEY"
+      ],
       "package": "@opencode/ai/providers/openai-compatible",
       "settings": {
         "baseURL": "https://api.sailresearch.com/v1"
@@ -14,10 +16,43 @@
         "glm-5.3": {
           "modelID": "zai-org/GLM-5.3",
           "name": "GLM 5.3 (Sail)",
+          "settings": {
+            "reasoningEffort": "high"
+          },
+          "variants": [
+            {
+              "id": "minimal",
+              "settings": {
+                "reasoningEffort": "minimal"
+              }
+            },
+            {
+              "id": "low",
+              "settings": {
+                "reasoningEffort": "low"
+              }
+            },
+            {
+              "id": "medium",
+              "settings": {
+                "reasoningEffort": "medium"
+              }
+            },
+            {
+              "id": "high",
+              "settings": {
+                "reasoningEffort": "high"
+              }
+            }
+          ],
           "capabilities": {
             "tools": true,
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 200000,
@@ -40,8 +75,13 @@
           "name": "Kimi K2.6 (Sail, vision)",
           "capabilities": {
             "tools": true,
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 262144,
@@ -66,19 +106,48 @@
             "reasoningEffort": "low"
           },
           "variants": [
-            { "id": "none", "settings": { "reasoningEffort": "none" } },
-            { "id": "minimal", "settings": { "reasoningEffort": "minimal" } },
-            { "id": "low", "settings": { "reasoningEffort": "low" } },
-            { "id": "medium", "settings": { "reasoningEffort": "medium" } },
-            { "id": "high", "settings": { "reasoningEffort": "high" } }
+            {
+              "id": "none",
+              "settings": {
+                "reasoningEffort": "none"
+              }
+            },
+            {
+              "id": "minimal",
+              "settings": {
+                "reasoningEffort": "minimal"
+              }
+            },
+            {
+              "id": "low",
+              "settings": {
+                "reasoningEffort": "low"
+              }
+            },
+            {
+              "id": "medium",
+              "settings": {
+                "reasoningEffort": "medium"
+              }
+            },
+            {
+              "id": "high",
+              "settings": {
+                "reasoningEffort": "high"
+              }
+            }
           ],
           "capabilities": {
             "tools": true,
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
-            "context": 200000,
+            "context": 500000,
             "output": 128000
           },
           "headers": {
@@ -99,10 +168,46 @@
           "settings": {
             "reasoningEffort": "high"
           },
+          "variants": [
+            {
+              "id": "none",
+              "settings": {
+                "reasoningEffort": "none"
+              }
+            },
+            {
+              "id": "minimal",
+              "settings": {
+                "reasoningEffort": "minimal"
+              }
+            },
+            {
+              "id": "low",
+              "settings": {
+                "reasoningEffort": "low"
+              }
+            },
+            {
+              "id": "medium",
+              "settings": {
+                "reasoningEffort": "medium"
+              }
+            },
+            {
+              "id": "high",
+              "settings": {
+                "reasoningEffort": "high"
+              }
+            }
+          ],
           "capabilities": {
             "tools": true,
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 200000,

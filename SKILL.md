@@ -88,7 +88,7 @@ opencode run --model 'sailresearch/<alias>#<variant>' 'Reply with OK'
 - A model with no `variants` array gets OpenCode's default set: `low`, `medium`, `high`.
 - An explicit `variants` array **replaces** that default set. List every level the model should offer, including the default ones.
 - `none` must be declared explicitly; the default set does not include it.
-- GLM-5.3 refuses `none` with HTTP 400 `unsupported_reasoning_effort`. Its lowest native tier is `low`.
+- GLM-5.3 refuses `none` with HTTP 400 `unsupported_reasoning_effort`; declare `minimal`–`high` and do not offer `none`. `minimal` is accepted and maps to the model's reasoning floor.
 
 Select a variant in every agent, command, or run that touches Sail:
 
@@ -98,7 +98,7 @@ Select a variant in every agent, command, or run that touches Sail:
 
 In `opencode.json` this is `agents.<id>.model`; in an agent Markdown file it is the `model:` frontmatter field.
 
-A bare `sailresearch/glm-5.3` sends no `reasoning_effort`; a bare `sailresearch/deepseek-v4-pro-0813` sends its `high` fallback; a bare Flash uses its `low` fallback. The variant is what makes each consumer's intent explicit.
+A bare `sailresearch/glm-5.3` uses its `high` fallback; a bare `sailresearch/deepseek-v4-pro-0813` sends its `high` fallback; a bare Flash uses its `low` fallback. The variant is what makes each consumer's intent explicit.
 
 Done when `opencode debug agents` shows every Sail consumer with the intended `variant`, and none is bare.
 

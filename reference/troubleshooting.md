@@ -9,9 +9,9 @@ Check in this order: service environment → model list → agent variant → wi
 | `Missing or invalid Authorization header` | The background service has no `SAIL_API_KEY`, or the provider's `env` name does not match the variable | Set it with `opencode service set env SAIL_API_KEY <key>`, restart, re-check `service get`. A `--standalone` run needs the key exported in that shell instead. |
 | `Model unavailable: sailresearch/<alias>` | Alias absent or disabled, provider inactive, missing credential, or the model key does not match | Check `opencode models \| grep sailresearch`; compare the `models` map key, not `modelID`; check the service key. |
 | `Variant unavailable for sailresearch/<alias>: <variant>` | The variant is not in the model's array and not in the default `low`/`medium`/`high` set | Declare it in `variants`, or use `low`/`medium`/`high`. |
-| HTTP 400 `unsupported_reasoning_effort` on GLM | GLM-5.3 cannot disable reasoning; `none` is invalid | Use `low`, GLM's lowest native tier. |
+| HTTP 400 `unsupported_reasoning_effort` on GLM | GLM-5.3 cannot disable reasoning; `none` is invalid | Remove `none` from the model's `variants`; Sail's own message points to `low` as the lowest tier. |
 | HTTP 400: `completion_window "flex" is only available for background responses ... or Batch work` | `flex` on Chat Completions | Use `asap` or `balanced`; reserve `flex` for background Responses or Batch. |
-| Answers arrive without reasoning | Bare GLM sends no `reasoning_effort`; bare Kimi does the same; a low variant may think very little | Pin `#high` on the consumer and compare. `/thinking` only controls display, not effort. |
+| Answers arrive without reasoning | Bare GLM now uses the configured `high` fallback; bare Kimi sends nothing; a low variant may think very little | Pin `#high` on the consumer and compare. `/thinking` only controls display, not effort. |
 | Request seems to hang | A `balanced` request waits in Sail's queue; a synchronous stream stays open while it waits | Expected for long-horizon work. Use `asap` for interactive latency. |
 | HTTP 503 `model_capacity_unavailable` | `asap` waits briefly, then fails instead of queueing | Honor `Retry-After`; retry, or move the work to `balanced`. |
 | HTTP 503 `service_overloaded` | Sail is overloaded before accepting the request | Honor `Retry-After` and retry. |
