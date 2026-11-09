@@ -2,6 +2,15 @@
 
 All notable changes to this project are documented in this file. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.4] - 2026-11-09
+
+### Changed
+
+- The vision alias is now `kimi-k3.1-pro` (`moonshotai/Kimi-K3.1-Pro`), replacing `kimi-k2.6`, which Sail dropped from its model catalog. It costs 1.20 / 8.00 with a 0.15 cache read and declares `none`–`high` with a `high` fallback.
+- DeepSeek V4.1 Flash 1017 is declared multimodal (`text` + `image`). Sail accepts image input on it, so screenshots no longer need a 36× more expensive Kimi call.
+- GLM-5.3 context limit is 262,144 (verified on the wire with a 266,677-token request) and it now declares the `xhigh` variant Sail accepts.
+- The routing rule sends image input to Flash first and keeps Kimi K3.1 Pro as the heavyweight vision fallback.
+
 ## [0.1.3] - 2026-11-03
 
 ### Fixed

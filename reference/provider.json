@@ -43,6 +43,12 @@
               "settings": {
                 "reasoningEffort": "high"
               }
+            },
+            {
+              "id": "xhigh",
+              "settings": {
+                "reasoningEffort": "xhigh"
+              }
             }
           ],
           "capabilities": {
@@ -55,7 +61,7 @@
             ]
           },
           "limit": {
-            "context": 200000,
+            "context": 262144,
             "output": 128000
           },
           "headers": {
@@ -70,9 +76,44 @@
             }
           }
         },
-        "kimi-k2.6": {
-          "modelID": "moonshotai/Kimi-K2.6",
-          "name": "Kimi K2.6 (Sail, vision)",
+        "kimi-k3.1-pro": {
+          "modelID": "moonshotai/Kimi-K3.1-Pro",
+          "name": "Kimi K3.1 Pro (Sail, vision)",
+          "settings": {
+            "reasoningEffort": "high"
+          },
+          "variants": [
+            {
+              "id": "none",
+              "settings": {
+                "reasoningEffort": "none"
+              }
+            },
+            {
+              "id": "minimal",
+              "settings": {
+                "reasoningEffort": "minimal"
+              }
+            },
+            {
+              "id": "low",
+              "settings": {
+                "reasoningEffort": "low"
+              }
+            },
+            {
+              "id": "medium",
+              "settings": {
+                "reasoningEffort": "medium"
+              }
+            },
+            {
+              "id": "high",
+              "settings": {
+                "reasoningEffort": "high"
+              }
+            }
+          ],
           "capabilities": {
             "tools": true,
             "input": [
@@ -85,16 +126,16 @@
           },
           "limit": {
             "context": 262144,
-            "output": 65536
+            "output": 131072
           },
           "headers": {
             "X-Sail-Completion-Window": "balanced"
           },
           "cost": {
-            "input": 0.45,
-            "output": 3.0,
+            "input": 1.2,
+            "output": 8.0,
             "cache": {
-              "read": 0.2,
+              "read": 0.15,
               "write": 0
             }
           }
@@ -140,7 +181,8 @@
           "capabilities": {
             "tools": true,
             "input": [
-              "text"
+              "text",
+              "image"
             ],
             "output": [
               "text"

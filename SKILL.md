@@ -109,7 +109,7 @@ The reference routing is in [reference/routing.md](reference/routing.md). Its lo
 - Keep plan and review on different model families so one family's blind spots do not carry from plan into review: GLM-5.3 for planning, DeepSeek V4 Pro for review.
 - Put written-plan bulk work, search, compaction, and one-line utility calls on Flash at the lowest effort that still does the job.
 - In the reference routing, the main `build` agent stays on the subscription-covered `opencode-go` model and Sail carries the subagents. Without that subscription, point `build` at a Sail model.
-- Use Kimi K2.6 only when the task needs image input.
+- Send image input to Flash 1017 first; it is multimodal and cheap. Use Kimi K3.1 Pro only when a screenshot needs a heavyweight vision model.
 
 Done when every agent in the routing table resolves to the intended provider, model, and variant.
 

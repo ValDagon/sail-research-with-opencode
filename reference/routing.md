@@ -6,9 +6,9 @@ The prices below are the values configured in `opencode.json` at the time of wri
 
 | OpenCode alias | Upstream `modelID` | Context / output | Input | Bare default | Selectable variants | Configured $/M in / out / cache read |
 | --- | --- | --- | --- | --- | --- | --- |
-| `glm-5.3` | `zai-org/GLM-5.3` | 200,000 / 128,000 | text | `high` | declared `minimal`, `low`, `medium`, `high` (no `none`) | 0.50 / 2.50 / 0.12 |
-| `kimi-k2.6` | `moonshotai/Kimi-K2.6` | 262,144 / 65,536 | text + image | none — field absent | default `low`, `medium`, `high` | 0.45 / 3.00 / 0.20 |
-| `deepseek-v4.1-flash-1017` | `deepseek-ai/DeepSeek-V4.1-Flash-1017` | 500,000 / 128,000 | text | `low` | declared `none`, `minimal`, `low`, `medium`, `high` | 0.07 / 0.22 / 0.005 |
+| `glm-5.3` | `zai-org/GLM-5.3` | 262,144 / 128,000 | text | `high` | declared `minimal`, `low`, `medium`, `high`, `xhigh` (no `none`) | 0.50 / 2.50 / 0.12 |
+| `kimi-k3.1-pro` | `moonshotai/Kimi-K3.1-Pro` | 262,144 / 131,072 | text + image | `high` | declared `none`, `minimal`, `low`, `medium`, `high` | 1.20 / 8.00 / 0.15 |
+| `deepseek-v4.1-flash-1017` | `deepseek-ai/DeepSeek-V4.1-Flash-1017` | 500,000 / 128,000 | text + image | `low` | declared `none`, `minimal`, `low`, `medium`, `high` | 0.07 / 0.22 / 0.005 |
 | `deepseek-v4-pro-0813` | `deepseek-ai/DeepSeek-V4-Pro-0813` | 200,000 / 128,000 | text | `high` | declared `none`, `minimal`, `low`, `medium`, `high` | 0.74 / 2.22 / 0.03 |
 
 The aliases are pinned checkpoints. Keep the date suffix and never silently swap in the unsuffixed Sail ID; that entry can move under you.
@@ -35,7 +35,7 @@ Rules behind the table:
 - **Different families for plan and review.** Planning runs on GLM-5.3; review runs on DeepSeek V4 Pro.
 - **Cheap work at low effort.** Search, bulk edits, compaction, titles, and summaries do not need a thinking budget.
 - **`#max` belongs to `opencode-go`.** Sail agents top out at `#high` in the reference routing, even though Sail accepts `xhigh` and `max` on GLM-5.3, Flash, and Pro. Keeping one convention makes routing unambiguous. Without an OpenCode Go subscription, move `build` to `sailresearch/deepseek-v4.1-flash-1017#high` and leave the rest unchanged.
-- **Kimi only for vision.** In the reference routing it has no agent slot; select it ad hoc when a task needs image input.
+- **Vision goes to Flash first.** `deepseek-v4.1-flash-1017` accepts images, so screenshots cost $0.22/M output, not $8.00/M. Keep `kimi-k3.1-pro` as the heavyweight vision fallback and on no agent slot.
 
 ## Adding a model
 
@@ -54,7 +54,7 @@ Measured on 2026-10-24 with OpenCode 2.0.28, by capturing OpenCode's outgoing re
 | Bare Pro request | `reasoning_effort: high` on the wire |
 | Bare Flash request | `reasoning_effort: low` on the wire |
 | Bare GLM request | `reasoning_effort: high` (configured fallback; the original 2026-10-24 measurement had no fallback) |
-| Bare Kimi request | `reasoning_effort` absent |
+| Bare Kimi request | `reasoning_effort: high` (configured fallback) |
 | Flash `#minimal` request | `reasoning_effort: minimal`, `X-Sail-Completion-Window: balanced`, `store: true` |
 | Variant set with no `variants` array | `low`, `medium`, `high`; `none`, `minimal`, `xhigh`, `max` all fail with “Variant unavailable” |
 | Variant set with Flash's explicit array | `none`, `minimal`, `low`, `medium`, `high`; `xhigh` and `max` unavailable |
