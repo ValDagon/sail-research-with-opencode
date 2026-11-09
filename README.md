@@ -96,8 +96,8 @@ The claims that matter, measured against the live API and by capturing OpenCode'
 | --- | --- |
 | Model with no `variants` array | OpenCode offers `low`, `medium`, `high` only |
 | Explicit `variants` array | Replaces the default set; `none` must be declared |
-| Bare GLM-5.3 | Sends no `reasoning_effort`; pin `#high` |
-| GLM-5.3 with `none` | HTTP 400 `unsupported_reasoning_effort`; use `low` |
+| Bare GLM-5.3 | `reasoning_effort: high` (configured fallback) |
+| GLM-5.3 with `none` | HTTP 400 `unsupported_reasoning_effort`; use `minimal` |
 | `flex` on Chat Completions | HTTP 400; use `asap` or `balanced` |
 | Key only in the shell | Invisible to the background service; `--standalone` only |
 | Key in `service.json` | Read by the service from the file, not inherited from the shell; `ps eww` on the service shows no `SAIL_API_KEY` |

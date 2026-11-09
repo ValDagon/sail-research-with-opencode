@@ -32,7 +32,7 @@ The aliases are pinned checkpoints. Keep the date suffix and never silently swap
 
 Rules behind the table:
 
-- **Pin every Sail consumer.** The variant is what makes each consumer's effort explicit. GLM falls back to `high`, Pro to `high`, Flash to `low`, Kimi to nothing.
+- **Pin every Sail consumer.** The variant is what makes each consumer's effort explicit. GLM falls back to `high`, Pro to `high`, Flash to `low`, Kimi to `high`.
 - **Different families for plan and review.** Planning runs on GLM-5.3; review runs on DeepSeek V4 Pro.
 - **Cheap work at low effort.** Search, bulk edits, compaction, titles, and summaries do not need a thinking budget.
 - **`#max` belongs to `opencode-go`.** Sail agents top out at `#high` in the reference routing, even though Sail accepts `xhigh` and `max` on GLM-5.3, Flash, and Pro. Keeping one convention makes routing unambiguous. Without an OpenCode Go subscription, move `build` to `sailresearch/deepseek-v4.1-flash-1017#high` and leave the rest unchanged.

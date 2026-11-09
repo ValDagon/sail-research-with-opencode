@@ -96,8 +96,8 @@ OpenCode 会自动发现这个技能。用自然语言直接提问即可：
 | --- | --- |
 | 未声明 `variants` 数组的模型 | OpenCode 只提供 `low`、`medium`、`high` |
 | 显式声明 `variants` 数组 | 会替换默认集合；`none` 必须显式声明 |
-| 未指定变体的 GLM-5.3 | 不发送 `reasoning_effort`；请固定为 `#high` |
-| GLM-5.3 使用 `none` | HTTP 400 `unsupported_reasoning_effort`；请改用 `low` |
+| 未指定变体的 GLM-5.3 | `reasoning_effort: high`（已配置的回退值） |
+| GLM-5.3 使用 `none` | HTTP 400 `unsupported_reasoning_effort`；请改用 `minimal` |
 | 在 Chat Completions 上使用 `flex` | HTTP 400；请改用 `asap` 或 `balanced` |
 | 密钥只放在 shell 中 | 后台服务看不到；仅 `--standalone` 可用 |
 | 密钥放在 `service.json` 中 | 服务从文件读取，不从 shell 继承；对服务执行 `ps eww` 看不到 `SAIL_API_KEY` |
