@@ -9,9 +9,10 @@ The prices below are the values configured in `opencode.json` at the time of wri
 | `glm-5.3` | `zai-org/GLM-5.3` | 262,144 / 128,000 | text | `high` | declared `minimal`, `low`, `medium`, `high`, `xhigh` (no `none`) | 0.50 / 2.50 / 0.12 |
 | `kimi-k3.1-pro` | `moonshotai/Kimi-K3.1-Pro` | 262,144 / 131,072 | text + image | `high` | declared `none`, `minimal`, `low`, `medium`, `high` | 1.20 / 8.00 / 0.15 |
 | `deepseek-v4.1-flash-1017` | `deepseek-ai/DeepSeek-V4.1-Flash-1017` | 500,000 / 128,000 | text + image | `low` | declared `none`, `minimal`, `low`, `medium`, `high` | 0.07 / 0.22 / 0.005 |
+| `deepseek-v4.1-flash-1017-asap` | `deepseek-ai/DeepSeek-V4.1-Flash-1017` | 500,000 / 128,000 | text + image | `low` | declared `none`, `minimal`, `low`, `medium`, `high` | 0.07 / 0.22 / 0.005 |
 | `deepseek-v4-pro-0813` | `deepseek-ai/DeepSeek-V4-Pro-0813` | 200,000 / 128,000 | text | `high` | declared `none`, `minimal`, `low`, `medium`, `high` | 0.74 / 2.22 / 0.03 |
 
-The aliases are pinned checkpoints. Keep the date suffix and never silently swap in the unsuffixed Sail ID; that entry can move under you.
+The aliases are pinned checkpoints. Keep the date suffix and never silently swap in the unsuffixed Sail ID; that entry can move under you. `deepseek-v4.1-flash-1017-asap` is the same pinned checkpoint declared separately so it can send `X-Sail-Completion-Window: asap` instead of `balanced`; it is what the `title` and `summary` agents use.
 
 ## Agent routing
 
@@ -25,8 +26,8 @@ The aliases are pinned checkpoints. Keep the date suffix and never silently swap
 | `explore` | `sailresearch/deepseek-v4.1-flash-1017` | `minimal` | Broad search and multi-file reading |
 | `general` | `sailresearch/deepseek-v4.1-flash-1017` | `medium` | Multi-step work outside plan/review |
 | `compaction` | `sailresearch/deepseek-v4.1-flash-1017` | `low` | Session compaction |
-| `title` | `sailresearch/deepseek-v4.1-flash-1017` | `minimal` | Session titles |
-| `summary` | `sailresearch/deepseek-v4.1-flash-1017` | `minimal` | Session summaries |
+| `title` | `sailresearch/deepseek-v4.1-flash-1017-asap` | `minimal` | Session titles |
+| `summary` | `sailresearch/deepseek-v4.1-flash-1017-asap` | `minimal` | Session summaries |
 | `strix` | `sailresearch/glm-5.3` | `high` | Security agent (optional; requires Strix) |
 
 Rules behind the table:
